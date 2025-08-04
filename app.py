@@ -9,9 +9,9 @@ mysql = MySQL()
 mysql_database_host = os.environ.get('DB_HOST', 'localhost')
 
 # MySQL configurations
-app.config['MYSQL_USER'] = 'db_user'
-app.config['MYSQL_PASSWORD'] = 'Passw0rd'
-app.config['MYSQL_DB'] = 'employee_db'
+app.config['MYSQL_USER'] = 'flaskuser'
+app.config['MYSQL_PASSWORD'] = 'flaskpass'
+app.config['MYSQL_DB'] = 'flaskdb'
 app.config['MYSQL_HOST'] = mysql_database_host
 mysql.init_app(app)
 
