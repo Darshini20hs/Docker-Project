@@ -26,16 +26,16 @@ def hello():
 @app.route('/read from database')
 def read():
     
-    result = []
-    with app.app_context():
+        result = []
         conn = mysql.connect()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM employees")
         row = cursor.fetchone()
         while row is not None:
-        result.append(row[0])
-        row = cursor.fetchone()
- return ",".join(result)
+            result.append(row[0])
+            row = cursor.fetchone()
+        cursor.close()
+        return ",".join(result)
 
 if __name__ == "__main__":
     app.run()
