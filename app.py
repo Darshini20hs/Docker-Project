@@ -27,7 +27,7 @@ def hello():
 def read():
     
         result = []
-        conn = mysql.connection()
+        conn = mysql.connection
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM employees")
         row = cursor.fetchone()
