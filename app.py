@@ -35,7 +35,7 @@ def read():
         while row is not None:
         result.append(row[0])
         row = cursor.fetchone()
-return ",".join(result)
+ return ",".join(result)
 
 if __name__ == "__main__":
     app.run()
