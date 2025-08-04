@@ -15,10 +15,6 @@ app.config['MYSQL_DATABASE_DB'] = 'employee_db'
 app.config['MYSQL_DATABASE_HOST'] = mysql_database_host
 mysql.init_app(app)
 
-conn = mysql.connect()
-
-cursor = conn.cursor()
-
 @app.route("/")
 def main():
     return "Welcome!"
@@ -29,12 +25,16 @@ def hello():
 
 @app.route('/read from database')
 def read():
-    cursor.execute("SELECT * FROM employees")
-    row = cursor.fetchone()
+    
     result = []
-    while row is not None:
-      result.append(row[0])
-      row = cursor.fetchone()
+    with app.app_context():
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM employees")
+        row = cursor.fetchone()
+        while row is not None:
+        result.append(row[0])
+        row = cursor.fetchone()
 
     return ",".join(result)
 
