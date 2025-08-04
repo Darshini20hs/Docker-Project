@@ -6,13 +6,13 @@ app = Flask(__name__)
 
 mysql = MySQL()
 
-mysql_database_host = 'MYSQL_DATABASE_HOST' in os.environ and os.environ['MYSQL_DATABASE_HOST'] or  'localhost'
+mysql_database_host = os.environ.get('DB_HOST', 'localhost')
 
 # MySQL configurations
-app.config['MYSQL_DATABASE_USER'] = 'db_user'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'Passw0rd'
-app.config['MYSQL_DATABASE_DB'] = 'employee_db'
-app.config['MYSQL_DATABASE_HOST'] = mysql_database_host
+app.config['MYSQL_USER'] = 'db_user'
+app.config['MYSQL_PASSWORD'] = 'Passw0rd'
+app.config['MYSQL_DB'] = 'employee_db'
+app.config['MYSQL_HOST'] = mysql_database_host
 mysql.init_app(app)
 
 @app.route("/")
